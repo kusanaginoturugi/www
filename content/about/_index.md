@@ -1,0 +1,28 @@
+---
+title: "会社情報"
+description: "Showway について"
+featured_image: ''
+---
+
+## 概要
+
+| 項目 | 内容 |
+|---|---|
+| 屋号 | Showway |
+| 代表 | 尾上 拓郎 |
+| 事業内容 | IT 開発受託、技術コンサルティング |
+| 所在地 | 日本国内 |
+| Web | <https://www.showway.biz/> |
+
+## 方針
+
+- 小さく作って長く運用できるシステムを目指します。
+- 過剰な抽象化や流行りの寄せ集めではなく、現場で使い続けられる構成を選びます。
+- 引き継ぎ・運用を意識した、読みやすいコードと記録を残します。
+
+## 使う技術 (一例)
+
+- 言語: Ruby、Shell、Go、Python
+- フレームワーク: Ruby on Rails、Hugo
+- インフラ: AWS、Cloudflare、Linux
+- 周辺: Git / GitHub、CI/CD、監視・ログ基盤

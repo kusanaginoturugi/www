@@ -1,0 +1,67 @@
+baseURL = 'https://www.showway.biz/'
+locale = 'ja'
+defaultContentLanguage = 'ja'
+title = 'Showway'
+theme = 'ananke'
+enableRobotsTXT = true
+enableEmoji = true
+summaryLength = 30
+copyright = '© Showway'
+timeZone = 'Asia/Tokyo'
+
+[pagination]
+  pagerSize = 10
+
+[permalinks]
+  posts = '/:slug'
+
+[uglyURLs]
+  posts = true
+
+[taxonomies]
+  tag = 'tags'
+  category = 'categories'
+
+[params]
+  description = 'IT 開発受託・コンサルティングの Showway 公式サイト'
+  favicon = ''
+  site_logo = ''
+  recent_posts_number = 5
+  show_reading_time = true
+  show_taxonomies_in_meta = true
+  show_intro = true
+  intro_image = ''
+  intro_image_hide_on_mobile = false
+  background_color_class = 'bg-near-black'
+  text_color = 'white'
+
+[[params.ananke_socials]]
+  name = 'github'
+  url = 'https://github.com/kusanaginoturugi'
+
+[menu]
+  [[menu.main]]
+    name = '事業内容'
+    url = '/services/'
+    weight = 10
+  [[menu.main]]
+    name = '会社情報'
+    url = '/about/'
+    weight = 20
+  [[menu.main]]
+    name = 'ブログ'
+    url = '/posts/'
+    weight = 30
+  [[menu.main]]
+    name = 'お問い合わせ'
+    url = '/contact/'
+    weight = 40
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = 'github'
+    lineNos = false
+    tabWidth = 2

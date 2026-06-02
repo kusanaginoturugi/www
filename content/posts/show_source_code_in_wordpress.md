@@ -1,0 +1,40 @@
+---
+title: "WordPressでソースコードを表示"
+date: 2013-01-20T07:41:46
+slug: "show_source_code_in_wordpress"
+categories: ["コンピューター"]
+tags: ["WordPress"]
+---
+
+<span class="alignright size-full wp-image-95" style="font-size:10px;"><a href="http://www.flickr.com/photos/laihiu/3935342049/" target="_blank" rel="noopener noreferrer"><img src="http://farm3.static.flickr.com/2641/3935342049_d8cca5a6a0_m.jpg" decoding="async" alt="my first piece of hand-written HTML in 1997!" /></a>  
+my first piece of hand-written HTML in 1997! / laihiu</span>
+
+ワードプレスでソースコードを表示させるには、「<a href="http://wordpress.org/extend/plugins/syntaxhighlighter/" target="_blank" rel="noopener noreferrer">SyntaxHighlighter Evolved</a>」を使うと便利です。(注 本来は大括弧の前後のスペースは削除しないと動作しません)
+
+``` brush:
+[ text ]
+対応言語
+html,actionscript3,bash,coldfusion,cpp,csharp,css,delphi,
+erlang,fsharp,diff,groovy,javascript,java,javafx,
+matlab (keywords only),objc,perl,php,text,powershell,
+python,r,ruby,scala,sql,vb,xml
+[ /text ]
+```
+
+<a href="http://en.support.wordpress.com/code/posting-source-code/" target="_blank" rel="noopener noreferrer">対応している言語</a>もいろいろある。
+
+試しに先程のテキストを実際に表示させるとこうなる。
+
+``` brush:
+対応言語
+html,actionscript3,bash,coldfusion,cpp,csharp,css,delphi,
+erlang,fsharp,diff,groovy,javascript,java,javafx,
+matlab (keywords only),objc,perl,php,text,powershell,
+python,r,ruby,scala,sql,vb,xml
+```
+
+SQLの場合
+
+``` brush:
+select * from table1 where id = 1;
+```
