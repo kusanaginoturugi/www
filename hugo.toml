@@ -6,7 +6,7 @@ theme = 'ananke'
 enableRobotsTXT = true
 enableEmoji = true
 summaryLength = 30
-copyright = '© Showway'
+copyright = 'Showway'
 timeZone = 'Asia/Tokyo'
 
 [pagination]
@@ -33,7 +33,7 @@ timeZone = 'Asia/Tokyo'
   intro_image = ''
   intro_image_hide_on_mobile = false
   background_color_class = 'bg-near-black'
-  text_color = 'white'
+  text_color = 'dark-gray'
 
 [[params.ananke_socials]]
   name = 'github'
@@ -44,6 +44,10 @@ timeZone = 'Asia/Tokyo'
     name = '事業内容'
     url = '/services/'
     weight = 10
+  [[menu.main]]
+    name = '実績'
+    url = '/actual_list/'
+    weight = 15
   [[menu.main]]
     name = '会社情報'
     url = '/about/'

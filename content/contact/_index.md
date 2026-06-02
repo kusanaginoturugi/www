@@ -9,7 +9,7 @@ featured_image: ''
 
 ## ご連絡先
 
-- メール: <mailto:info@showway.biz>
+- メール: <mailto:onoue@showway.biz>
 
 ## ご相談時にいただけると助かる情報
 

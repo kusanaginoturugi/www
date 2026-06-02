@@ -6,7 +6,6 @@ categories: ["コンピューター"]
 tags: ["IoT","Pebble","コンピューター"]
 ---
 
-[<img src="http://www.showway.biz/wp-content/uploads/2015/10/3.png" class="alignright size-full wp-image-459" loading="lazy" decoding="async" width="180" height="180" alt="3" />](http://www.showway.biz/wp-content/uploads/2015/10/3.png)
 
 <a href="http://apps.getpebble.com/en_US/application/561cb30d2116352d6600003d" target="_blank">BSO Baseball Indicator</a>
 
