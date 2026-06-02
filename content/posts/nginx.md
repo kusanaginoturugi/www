@@ -4,6 +4,7 @@ date: 2015-12-23T16:00:51
 slug: "nginx"
 categories: ["コンピューター"]
 tags: []
+summary: "Nginxのインストールおよび設定 ArchLinuxのWikiは新しく正しい情報が多いので、まずはそちらを参照する。 nginx – ArchWiki phpinfo()が動作することを確認 dokuwiki まずはデータベースを使わないウェブアプリで試す dokuwiki – ArchWiki nginx での設定方法が載っているので、こちらもさくっと動作確認 wordpress WordPress Codex 内の Nginx 情報がよさげだったのでそれを参照。"
 ---
 
 ## Nginxのインストールおよび設定

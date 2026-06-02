@@ -4,10 +4,8 @@ date: 2012-08-10T11:32:14
 slug: "use_old_computar_in_virtual_machine"
 categories: ["コンピューター"]
 tags: ["コンピューター","仮想マシン","案件"]
+summary: "先日、こんな仕事がありました。 「仕事でWindows98を使っているが、マシンが壊れそうなのだけど、今の仕事はWindows98でしかできない」との事。 プリンターが最新のOSのサポートを受けられない、使いたいアプリケーションが新しいOS(WindowsVista)に対応していないなどなど。こういった事はけっこうあります。"
 ---
-
-<span style="font-size:10px;"><a href="http://www.igosso.net/flk/2869429588.html" target="_blank" rel="noopener noreferrer"><img src="https://farm4.staticflickr.com/3215/2869429588_f7c1539b8b_m.jpg" decoding="async" /></a>  
-Multiple OS Desktop / kcdsTM</span>
 
 先日、こんな仕事がありました。
 

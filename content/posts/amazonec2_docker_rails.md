@@ -4,6 +4,7 @@ date: 2015-04-09T10:16:47
 slug: "amazonec2_docker_rails"
 categories: ["コンピューター"]
 tags: ["コンピューター","サーバー","仮想マシン"]
+summary: "いやあ、紆余曲折ありましたがようやくAWS上にRailsアプリを構築する事ができました。 ちなみに紆余曲折とは以下の通り。 1. heroku用に作っていたRailsアプリをDocker用の修正 2. ローカル環境下でDockerで動くことを確認 3. AWSでDockerを動かすならElasticBeastalkやでと聞く 4."
 ---
 
 いやあ、紆余曲折ありましたがようやくAWS上にRailsアプリを構築する事ができました。

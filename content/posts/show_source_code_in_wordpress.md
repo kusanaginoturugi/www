@@ -4,10 +4,8 @@ date: 2013-01-20T07:41:46
 slug: "show_source_code_in_wordpress"
 categories: ["コンピューター"]
 tags: ["WordPress"]
+summary: "ワードプレスでソースコードを表示させるには、「SyntaxHighlighter Evolved」を使うと便利です。(注 本来は大括弧の前後のスペースは削除しないと動作しません) 対応している言語もいろいろある。 試しに先程のテキストを実際に表示させるとこうなる。 SQLの場合"
 ---
-
-<span class="alignright size-full wp-image-95" style="font-size:10px;"><a href="http://www.flickr.com/photos/laihiu/3935342049/" target="_blank" rel="noopener noreferrer"><img src="http://farm3.static.flickr.com/2641/3935342049_d8cca5a6a0_m.jpg" decoding="async" alt="my first piece of hand-written HTML in 1997!" /></a>  
-my first piece of hand-written HTML in 1997! / laihiu</span>
 
 ワードプレスでソースコードを表示させるには、「<a href="http://wordpress.org/extend/plugins/syntaxhighlighter/" target="_blank" rel="noopener noreferrer">SyntaxHighlighter Evolved</a>」を使うと便利です。(注 本来は大括弧の前後のスペースは削除しないと動作しません)
 

@@ -2,8 +2,6 @@
 title: "実績リスト"
 date: 2011-02-17T14:05:07
 lastmod: 2025-06-09T20:05:14
-slug: "actual_list"
-url: "/actual_list/"
 ---
 
 ### 2025年

@@ -1,7 +1,7 @@
 ---
-title: "Showway"
+title: "昌永ウェブサービス"
 description: "IT 開発受託・コンサルティング"
-featured_image: ''
+featured_image: '/images/shizume.jpg'
 ---
 
 ## ビジネスの「次の一手」を、確かなコードで。
@@ -9,6 +9,7 @@ featured_image: ''
 Showway は、IT システムの開発受託と技術コンサルティングを提供しています。
 小さく始めて、長く運用できるシステムづくりを得意としています。
 
+- 生成AI活用
 - 業務システム / Web アプリケーション開発
 - クラウド・インフラ構築 (AWS / Cloudflare ほか)
 - 技術選定・アーキテクチャ相談

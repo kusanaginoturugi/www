@@ -4,10 +4,8 @@ date: 2013-08-31T00:30:30
 slug: "rails4_solutions"
 categories: ["コンピューター"]
 tags: ["paypal","コンピューター","案件"]
+summary: "歯科医院用の診療記録のシステムを作成しました。 開発環境など プログラミング言語 Ruby v.2.0 フレームワーク Ruby On Rails v.4.0.0 CSSフレームワーク Twitter BootStrap v.2.3.2 主に使用したエディタ Sublime Text 2 PDF出力に使用したツール wkhtmltopdf v.0.9.9."
 ---
-
-<span class="alignright style="><a href="http://www.igosso.net/flk/177722693.html" target="_blank"><img src="http://farm1.static.flickr.com/74/177722693_8aca6c7e82_m.jpg" decoding="async" /></a>  
-Ruby on Rails / Andrew\*</span>
 
 歯科医院用の診療記録のシステムを作成しました。
 

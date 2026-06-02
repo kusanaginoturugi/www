@@ -4,6 +4,7 @@ date: 2019-02-26T15:30:58
 slug: "archlinux-on-wsl"
 categories: ["コンピューター"]
 tags: ["ArchLinux","WSL"]
+summary: "久々にマシンを買い替えたら、フェイスIDが快適すぎて、しばらくWindowsで生活してみようと思った。 最近のWindowsマシンはWSLというものがあり、お手軽にLinuxを動かせるようになっている。UbuntuもDebianも嫌いではないが、Archerとしては、ArchLinuxを入れておきたいものである。 WSL にインストール 公式Wikiに手順が書いてあるのでさくっと適用。"
 ---
 
 久々にマシンを買い替えたら、フェイスIDが快適すぎて、しばらくWindowsで生活してみようと思った。

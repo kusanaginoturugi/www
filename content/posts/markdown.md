@@ -4,6 +4,7 @@ date: 2015-11-20T11:53:48
 slug: "markdown"
 categories: ["コンピューター"]
 tags: ["WordPress","コンピューター","プラグイン"]
+summary: "以下のような記述をすると 以下のような出力になりますよ。 Markdownテスト Jetpackに付属しているmarkdown機能を使ってみるテスト セットアップはJetpackで有効にするだけ 投稿の設定にmarkdownの設定とかは見つからなかった コメントの設定にはmarkdownの設定があった。 さて、プレビューしてみるか。 Markdown 段落がいまいちよくわからない。"
 ---
 
 以下のような記述をすると

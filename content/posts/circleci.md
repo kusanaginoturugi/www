@@ -4,6 +4,7 @@ date: 2019-02-28T18:52:37
 slug: "circleci"
 categories: ["コンピューター"]
 tags: []
+summary: "いったいどれくらい周回遅れの話題かわからないけど、CircleCI を試してみた。 お題はこちらの工数入力Webアプリ。 https://github.com/kusanaginoturugi/man-hour しょぼいアプリなんだけど、工数の入力ができて、毎月報告書をPDFで出力できて、工数の残高を自動計算してくれる自分だけが幸せになるRailsアプリである。"
 ---
 
 いったいどれくらい周回遅れの話題かわからないけど、[CircleCI](https://circleci.com/%20) を試してみた。

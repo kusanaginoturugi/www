@@ -4,11 +4,8 @@ date: 2012-09-12T00:13:08
 slug: "monthly_schedule_in_googleapps"
 categories: ["コンピューター"]
 tags: ["Google","コンピューター","案件"]
+summary: "会社の予定表をGoogleカレンダーに書いてあり、その内容を一覧表に出すという仕事があるそうです。Googleカレンダーに入っているなら、それを共有するだけでええやんと思うのだが、そうは問屋が卸さない。これを Excel で再作成して紙で渡さなければならないとの事。 予定が入りしだい Google カレンダーに入力していき、最終的にはそれを見ながら、手作業で Excel に入力しなおしていると言う。"
 ---
-
-<span class="alignright size-full wp-image-95" style="font-size: 10px;"><a href="http://www.flickr.com/photos/busbong/5345325898/" target="_blank"><img src="http://farm6.static.flickr.com/5165/5345325898_e3d3241bec_m.jpg" decoding="async" alt="カレンダーをの画像「カレンダーをめくりました。 / senov」" /></a>  
-credit: [senov](http://www.flickr.com/photos/busbong/ "senov")  
-</span>
 
 会社の予定表をGoogleカレンダーに書いてあり、その内容を一覧表に出すという仕事があるそうです。Googleカレンダーに入っているなら、それを共有するだけでええやんと思うのだが、そうは問屋が卸さない。これを Excel で再作成して紙で渡さなければならないとの事。
 

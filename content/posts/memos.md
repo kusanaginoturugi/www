@@ -4,6 +4,7 @@ date: 2023-07-19T17:27:50
 slug: "memos"
 categories: ["コンピューター"]
 tags: []
+summary: "WordPress で記事を書くのはダルいので、Memos に書いたものを公開する。 memos インストール完了"
 ---
 
 WordPress で記事を書くのはダルいので、Memos に書いたものを公開する。

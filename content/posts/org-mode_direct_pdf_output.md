@@ -4,6 +4,7 @@ date: 2019-09-11T15:55:17
 slug: "org-mode_direct_pdf_output"
 categories: ["コンピューター"]
 tags: []
+summary: "org-modeを使って、PDFファイルを出力するのは、いったんODTファイルに出力した後、LibreOfficeを立ち上げてから、PDFに出力するのが一般的だろうと思う。 しかし、本来はODTファイルを経由しなくともLaTex経由で直接PDFファイルを生成できるはずである。 実は何度か試してはいたけれど、エラーがでるので放置していたのだ。"
 ---
 
 org-modeを使って、PDFファイルを出力するのは、いったんODTファイルに出力した後、LibreOfficeを立ち上げてから、PDFに出力するのが一般的だろうと思う。

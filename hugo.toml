@@ -1,16 +1,16 @@
 baseURL = 'https://www.showway.biz/'
 locale = 'ja'
 defaultContentLanguage = 'ja'
-title = 'Showway'
+title = 'SHOWWAY'
 theme = 'ananke'
 enableRobotsTXT = true
 enableEmoji = true
 summaryLength = 30
-copyright = 'Showway'
+copyright = 'SHOWWAY'
 timeZone = 'Asia/Tokyo'
 
 [pagination]
-  pagerSize = 10
+  pagerSize = 12
 
 [permalinks]
   posts = '/:slug'
@@ -23,17 +23,20 @@ timeZone = 'Asia/Tokyo'
   category = 'categories'
 
 [params]
-  description = 'IT 開発受託・コンサルティングの Showway 公式サイト'
+  description = 'IT 開発受託・コンサルティングの SHOWWAY 公式サイト'
   favicon = ''
   site_logo = ''
   recent_posts_number = 5
   show_reading_time = true
   show_taxonomies_in_meta = true
   show_intro = true
-  intro_image = ''
+  intro_image = '/images/shizume.jpg'
   intro_image_hide_on_mobile = false
   background_color_class = 'bg-near-black'
   text_color = 'dark-gray'
+
+[params.ananke.home]
+  content_alignment = 'left'
 
 [[params.ananke_socials]]
   name = 'github'

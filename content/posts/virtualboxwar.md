@@ -4,6 +4,7 @@ date: 2016-10-06T14:58:52
 slug: "virtualboxwar"
 categories: ["コンピューター"]
 tags: []
+summary: "pacmanだけで最新版を使うのは無理なのがVirtualbox。 バージョンアップの度に動かなくなるのがVirtualbox。 何度やってもどこかに落とし穴があるのがVirtualbox。 最近だと dkms (Dynamic Kernel Modules System)絡みで動かなくなったが、今のところ以下のパッケージのインストールで不満なく使えている。"
 ---
 
 - pacmanだけで最新版を使うのは無理なのがVirtualbox。

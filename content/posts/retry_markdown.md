@@ -4,6 +4,7 @@ date: 2020-04-02T18:11:53
 slug: "retry_markdown"
 categories: ["コンピューター"]
 tags: []
+summary: "以下のプラグインをインストール 1. Classic Editor 2. Markdown Editor theme/theme-name/functions.php"
 ---
 
 以下の**プラグイン**をインストール

@@ -4,10 +4,8 @@ date: 2014-10-10T10:55:53
 slug: "excel_addin"
 categories: ["コンピューター"]
 tags: ["Excel","Microsoft","コンピューター"]
+summary: "システムのバージョンアップに伴ない、アプリケーションのテストを実施する事になりました。 この作業は動作確認をしつつ、ひたすら画面のキャプチャーを取得してExcelに貼りつけるという単純な作業になります。とはいえ、完全に自動化して実施できるほど簡単でもなく、何度もやる必要のない仕事です。"
 ---
-
-<span style="font-size:10px;"><a href="http://www.igosso.net/flk/3449717651.html" target="_blank"><img src="https://farm4.staticflickr.com/3602/3449717651_74f62f4994_m.jpg" decoding="async" /></a>  
-Excel / Jon Juan</span>
 
 システムのバージョンアップに伴ない、アプリケーションのテストを実施する事になりました。
 
@@ -121,7 +119,6 @@ Private Sub BubbleSort_Str( _
 
  End Sub
 
-
 ' ある一つのサブフォルダについての処理
 Private Function importImagesFromOneSubDir(sub_dir, y, root_dir)
     'MsgBox sub_dir.Name
@@ -175,7 +172,6 @@ Private Function isImageFile(file_name)
     
     isImageFile = ret
 End Function
-
 
 ' ある一つの画像ファイルをシート中に取り込む
 Private Sub importImageFile(file_name, y, root_dir, sub_dir)

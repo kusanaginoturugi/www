@@ -4,6 +4,7 @@ date: 2017-09-06T16:43:41
 slug: "gnucash_alternatives"
 categories: ["コンピューター"]
 tags: []
+summary: "今年こそGnucashから別のアプリに切り替えようかと思って調べてみた。 AlternativesTo 上記のような便利なサイトがあったのでここからいくつかを試してみた。 HomeBank パッケージマネージャーからインストール可能。 QIFファイルからインポート可能。 sudo pacman -S homebank Money Manager Ex パッケージマネージャーからインストール可能。"
 ---
 
 今年こそGnucashから別のアプリに切り替えようかと思って調べてみた。
