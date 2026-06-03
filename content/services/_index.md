@@ -1,7 +1,7 @@
 ---
 title: "事業内容"
 description: "Showway が提供するサービス"
-featured_image: '/images/IMG_0427.JPG '
+featured_image: '/images/IMG_0427.JPG'
 ---
 
 ## 開発受託
