@@ -38,6 +38,9 @@ timeZone = 'Asia/Tokyo'
 [params.ananke.home]
   content_alignment = 'left'
 
+[params.ananke]
+  custom_css = ['custom.css']
+
 [[params.ananke_socials]]
   name = 'github'
   url = 'https://github.com/kusanaginoturugi'

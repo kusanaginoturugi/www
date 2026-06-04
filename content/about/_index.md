@@ -1,6 +1,5 @@
 ---
 title: "会社情報"
-description: "Showway について"
 featured_image: ''
 ---
 

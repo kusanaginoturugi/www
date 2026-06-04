@@ -4,24 +4,24 @@
 
 ## ユーザー側で必要な操作
 
-- [ ] Cloudflare Pages でリポジトリ連携
+- [*] Cloudflare Pages でリポジトリ連携
   - Workers & Pages → Create application → Pages → Connect to Git
   - Repo: `kusanaginoturugi/www`
   - Framework preset: **Hugo**
   - Build command: `hugo --minify`
   - Build output: `public`
   - Env var: `HUGO_VERSION=0.162.0`
-- [ ] カスタムドメイン `www.showway.biz` を Pages プロジェクトに追加
-- [ ] DNS を Pages 向けに切替 (Cloudflare DNS なら案内に従う)
-- [ ] 動作確認後、EC2 上の旧 WordPress を停止
+- [*] カスタムドメイン `www.showway.biz` を Pages プロジェクトに追加
+- [*] DNS を Pages 向けに切替 (Cloudflare DNS なら案内に従う)
+- [* ] 動作確認後、EC2 上の旧 WordPress を停止
 
 ## WP 固定ページの残り
 
-- [ ] `about` (タイトル「紹介」, `https://www.showway.biz/about`)
+- [*] `about` (タイトル「紹介」, `https://www.showway.biz/about`)
   - 自前の `content/about/_index.md` (会社情報) と被るので、内容を取り込むか / 差し替えるか / 無視するか判断
-- [ ] `test` (`https://www.showway.biz/test`)
+- [*] `test` (`https://www.showway.biz/test`)
   - 中身がテスト用なら無視で OK
-- [ ] 取り込む方針が決まったら `scripts/import-wp.sh` を pages 対応に拡張する案もあり
+- [*] 取り込む方針が決まったら `scripts/import-wp.sh` を pages 対応に拡張する案もあり
 
 ## デザイン・UI
 

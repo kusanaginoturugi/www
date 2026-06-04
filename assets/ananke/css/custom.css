@@ -7,6 +7,10 @@
   overflow: hidden;
 }
 
-f-subheadline-l {
-    font-size: 4rem !important!;
+.f-subheadline-l {
+  font-size: 4rem !important;
+}
+
+.measure-wide {
+  max-width: 40em !important;
 }
