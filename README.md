@@ -25,6 +25,8 @@ hugo --minify
 ```
 content/
   _index.md           トップ
+  _index.en.md        英語トップ
+  _index.koshu.md     甲州弁トップ
   about/              会社情報
   services/           事業内容
   contact/            問い合わせ
@@ -34,6 +36,16 @@ scripts/
   import-wp.sh        WordPress 記事を Markdown に変換するスクリプト
 hugo.toml             サイト設定
 ```
+
+## 表示言語とテーマ
+
+- 日本語 (既定): `/`
+- English: `/en/`
+- 甲州弁: `/koshu/`
+
+トップ、事業内容、実績、会社情報、お問い合わせは 3 言語で用意している。ヘッダーの切替で OS のライト/ダーク設定を初期値にし、手動で選んだ表示モードはブラウザに保存する。
+
+実装の経緯と保守時の注意点は `docs/PLAN.md`、`docs/WORKLOG.md`、`docs/HANDOFF.md` を参照。
 
 ## URL 構造
 

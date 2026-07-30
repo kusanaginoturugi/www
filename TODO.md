@@ -30,6 +30,12 @@
 - [ ] ファビコン (`params.favicon`)、サイトロゴ (`params.site_logo`) 設定
 - [ ] page-header の中央寄せ (`tc-l`) も外したい場合は `layouts/_partials/page-header.html` を上書き
 - [ ] 配色・タイポの最終調整 (Tachyons / `assets/ananke/css/custom.css`)
+- [x] OS 設定連動のライト/ダークモードと手動切替 UI
+
+## 多言語
+
+- [x] 英語 (`/en/`) と甲州弁 (`/koshu/`) の主要固定ページ
+- [ ] ブログ記事の英語・甲州弁訳を必要なものから追加
 
 ## コンテンツ
 

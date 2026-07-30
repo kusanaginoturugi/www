@@ -1,6 +1,7 @@
 baseURL = 'https://www.showway.biz/'
 locale = 'ja'
 defaultContentLanguage = 'ja'
+defaultContentLanguageInSubdir = false
 title = 'SHOWWAY'
 theme = 'ananke'
 enableRobotsTXT = true
@@ -45,26 +46,86 @@ timeZone = 'Asia/Tokyo'
   name = 'github'
   url = 'https://github.com/kusanaginoturugi'
 
-[menu]
-  [[menu.main]]
+[languages]
+  [languages.ja]
+    locale = 'ja-JP'
+    label = '日本語'
+    weight = 1
+    [languages.ja.params]
+      description = 'IT 開発受託・コンサルティングの SHOWWAY 公式サイト'
+    [[languages.ja.menu.main]]
     name = '事業内容'
     url = '/services/'
     weight = 10
-  [[menu.main]]
+    [[languages.ja.menu.main]]
     name = '実績'
     url = '/actual_list/'
     weight = 15
-  [[menu.main]]
+    [[languages.ja.menu.main]]
     name = '会社情報'
     url = '/about/'
     weight = 20
-  [[menu.main]]
+    [[languages.ja.menu.main]]
     name = 'ブログ'
     url = '/posts/'
     weight = 30
-  [[menu.main]]
+    [[languages.ja.menu.main]]
     name = 'お問い合わせ'
     url = '/contact/'
+    weight = 40
+
+  [languages.en]
+    locale = 'en-US'
+    label = 'English'
+    weight = 2
+    [languages.en.params]
+      description = 'SHOWWAY provides contract software development and technology consulting.'
+    [[languages.en.menu.main]]
+    name = 'Services'
+    url = '/en/services/'
+    weight = 10
+    [[languages.en.menu.main]]
+    name = 'Work'
+    url = '/en/actual_list/'
+    weight = 15
+    [[languages.en.menu.main]]
+    name = 'About'
+    url = '/en/about/'
+    weight = 20
+    [[languages.en.menu.main]]
+    name = 'Blog'
+    url = '/posts/'
+    weight = 30
+    [[languages.en.menu.main]]
+    name = 'Contact'
+    url = '/en/contact/'
+    weight = 40
+
+  [languages.koshu]
+    locale = 'ja-JP-x-koshu'
+    label = '甲州弁'
+    weight = 3
+    [languages.koshu.params]
+      description = 'IT 開発受託・コンサルティングの SHOWWAY 公式サイトだよ。'
+    [[languages.koshu.menu.main]]
+    name = 'できること'
+    url = '/koshu/services/'
+    weight = 10
+    [[languages.koshu.menu.main]]
+    name = '仕事の実績'
+    url = '/koshu/actual_list/'
+    weight = 15
+    [[languages.koshu.menu.main]]
+    name = '会社のこと'
+    url = '/koshu/about/'
+    weight = 20
+    [[languages.koshu.menu.main]]
+    name = 'ブログ'
+    url = '/posts/'
+    weight = 30
+    [[languages.koshu.menu.main]]
+    name = '連絡する'
+    url = '/koshu/contact/'
     weight = 40
 
 [markup]

@@ -1,0 +1,2 @@
+{{ $theme := resources.Get "js/theme-toggle.js" | minify | fingerprint }}
+<script defer src="{{ $theme.RelPermalink }}" integrity="{{ $theme.Data.Integrity }}" crossorigin="anonymous"></script>

@@ -14,3 +14,112 @@
 .measure-wide {
   max-width: 40em !important;
 }
+
+:root {
+  color-scheme: light dark;
+  --sw-bg: #f7f8f5;
+  --sw-surface: #ffffff;
+  --sw-text: #20251c;
+  --sw-muted: #5f6857;
+  --sw-border: #dce2d5;
+  --sw-accent: #7e9d12;
+  --sw-header: #27330e;
+  --sw-header-text: #f7faee;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --sw-bg: #151912;
+    --sw-surface: #20261b;
+    --sw-text: #edf2e7;
+    --sw-muted: #bdc7b2;
+    --sw-border: #46503d;
+    --sw-accent: #c2df39;
+    --sw-header: #10150c;
+    --sw-header-text: #f4f8ec;
+  }
+}
+
+:root[data-theme="dark"] {
+  --sw-bg: #151912;
+  --sw-surface: #20261b;
+  --sw-text: #edf2e7;
+  --sw-muted: #bdc7b2;
+  --sw-border: #46503d;
+  --sw-accent: #c2df39;
+  --sw-header: #10150c;
+  --sw-header-text: #f4f8ec;
+}
+
+html, body.bg-near-white { background: var(--sw-bg); color: var(--sw-text); }
+body .near-black, body .black, body .mid-gray, body .dark-gray { color: var(--sw-text); }
+body .bg-white, body .bg-near-white { background-color: var(--sw-surface); }
+body a { color: var(--sw-accent); }
+body a:hover { color: var(--sw-text); }
+body .b--moon-gray { border-color: var(--sw-border); }
+body .bg-light-gray { background-color: var(--sw-bg); }
+
+.site-navigation {
+  background: var(--sw-header);
+  border-top: 4px solid var(--sw-accent);
+  color: var(--sw-header-text);
+}
+
+.site-navigation-inner {
+  width: min(100% - 2rem, 78rem);
+  margin: 0 auto;
+  min-height: 4.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.site-brand { color: var(--sw-header-text); font-size: 1.35rem; font-weight: 700; text-decoration: none; }
+.site-brand:hover { color: var(--sw-header-text); text-decoration: none; }
+.site-navigation-actions, .site-controls, .language-switch, .site-menu { display: flex; align-items: center; }
+.site-navigation-actions { gap: 1.25rem; }
+.site-menu { gap: 1rem; list-style: none; margin: 0; padding: 0; }
+.site-menu a { color: var(--sw-header-text); font-size: .95rem; text-decoration: none; }
+.site-menu a:hover, .site-menu a[aria-current="page"] { color: var(--sw-accent); }
+.site-controls { gap: .75rem; }
+.language-switch { gap: .15rem; font-size: .78rem; }
+.language-switch a, .language-switch span { color: var(--sw-header-text); padding: .28rem .42rem; border-radius: 3px; white-space: nowrap; }
+.language-switch a { opacity: .74; text-decoration: none; }
+.language-switch a:hover { color: var(--sw-header-text); background: rgba(255, 255, 255, .12); opacity: 1; }
+.language-switch span { background: rgba(255, 255, 255, .16); }
+
+.theme-toggle {
+  display: inline-grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  width: 3.25rem;
+  height: 1.9rem;
+  padding: .15rem;
+  border: 1px solid rgba(255, 255, 255, .32);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--sw-header-text);
+  cursor: pointer;
+  position: relative;
+}
+.theme-toggle::after { content: ""; position: absolute; left: .2rem; width: 1.3rem; height: 1.3rem; border-radius: 50%; background: var(--sw-accent); transition: transform .2s ease; }
+.theme-toggle[aria-pressed="true"]::after { transform: translateX(1.35rem); }
+.theme-toggle span { z-index: 1; font-size: .78rem; }
+.theme-toggle:focus-visible { outline: 3px solid var(--sw-accent); outline-offset: 3px; }
+
+footer.bg-near-black { background: var(--sw-header); }
+footer a { color: var(--sw-header-text); }
+
+@media screen and (max-width: 70em) {
+  .site-navigation-inner { align-items: flex-start; flex-direction: column; padding: .8rem 0; }
+  .site-navigation-actions { width: 100%; justify-content: space-between; }
+}
+
+@media screen and (max-width: 42em) {
+  .site-navigation-actions { align-items: flex-start; flex-direction: column; gap: .7rem; }
+  .site-menu { flex-wrap: wrap; gap: .55rem 1rem; }
+  .site-controls { width: 100%; justify-content: space-between; }
+  .language-switch { gap: .05rem; }
+  .language-switch a, .language-switch span { padding-inline: .32rem; }
+}

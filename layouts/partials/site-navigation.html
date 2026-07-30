@@ -1,0 +1,41 @@
+{{- $labels := dict "theme" "表示モードを切り替え" -}}
+{{- if eq .Site.Language.Lang "en" -}}
+  {{- $labels = dict "theme" "Toggle colour mode" -}}
+{{- else if eq .Site.Language.Lang "koshu" -}}
+  {{- $labels = dict "theme" "明るさを切り替えるじゃん" -}}
+{{- end -}}
+<nav class="site-navigation" aria-label="{{ if eq .Site.Language.Lang "en" }}Global navigation{{ else }}グローバルナビゲーション{{ end }}">
+  <div class="site-navigation-inner">
+    <a href="{{ .Site.Home.RelPermalink }}" class="site-brand">{{ .Site.Title }}</a>
+    <div class="site-navigation-actions">
+      <ul class="site-menu">
+        {{ range .Site.Menus.main }}
+          <li><a href="{{ .URL }}"{{ if $.IsMenuCurrent "main" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+      <div class="site-controls">
+        <div class="language-switch" aria-label="Language">
+          {{ range hugo.Sites }}
+            {{ $target := . }}
+            {{ if eq .Language.Lang $.Site.Language.Lang }}
+              <span aria-current="true">{{ .Language.Label }}</span>
+            {{ else }}
+              {{ with $.Translations }}
+                {{ range . }}
+                  {{ if eq .Language.Lang $target.Language.Lang }}
+                    <a href="{{ .RelPermalink }}" hreflang="{{ .Language.Lang }}">{{ .Language.Label }}</a>
+                  {{ end }}
+                {{ end }}
+              {{ else }}
+                <a href="{{ $target.Home.RelPermalink }}" hreflang="{{ $target.Language.Lang }}">{{ $target.Language.Label }}</a>
+              {{ end }}
+            {{ end }}
+          {{ end }}
+        </div>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="{{ index $labels "theme" }}">
+          <span aria-hidden="true">&#9788;</span><span aria-hidden="true">&#9790;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
