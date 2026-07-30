@@ -17,38 +17,30 @@
 
 :root {
   color-scheme: light dark;
-  --sw-bg: #f7f8f5;
+  --sw-bg: #f4f4f4;
   --sw-surface: #ffffff;
-  --sw-text: #20251c;
-  --sw-muted: #5f6857;
-  --sw-border: #dce2d5;
-  --sw-accent: #7e9d12;
-  --sw-header: #27330e;
-  --sw-header-text: #f7faee;
+  --sw-text: #333333;
+  --sw-border: #cccccc;
+  --sw-accent: #357edd;
+  --sw-header-text: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --sw-bg: #151912;
-    --sw-surface: #20261b;
-    --sw-text: #edf2e7;
-    --sw-muted: #bdc7b2;
-    --sw-border: #46503d;
-    --sw-accent: #c2df39;
-    --sw-header: #10150c;
-    --sw-header-text: #f4f8ec;
+    --sw-bg: #171717;
+    --sw-surface: #242424;
+    --sw-text: #f5f5f5;
+    --sw-border: #555555;
+    --sw-accent: #8cc8ff;
   }
 }
 
 :root[data-theme="dark"] {
-  --sw-bg: #151912;
-  --sw-surface: #20261b;
-  --sw-text: #edf2e7;
-  --sw-muted: #bdc7b2;
-  --sw-border: #46503d;
-  --sw-accent: #c2df39;
-  --sw-header: #10150c;
-  --sw-header-text: #f4f8ec;
+  --sw-bg: #171717;
+  --sw-surface: #242424;
+  --sw-text: #f5f5f5;
+  --sw-border: #555555;
+  --sw-accent: #8cc8ff;
 }
 
 html, body.bg-near-white { background: var(--sw-bg); color: var(--sw-text); }
@@ -60,28 +52,26 @@ body .b--moon-gray { border-color: var(--sw-border); }
 body .bg-light-gray { background-color: var(--sw-bg); }
 
 .site-navigation {
-  background: var(--sw-header);
-  border-top: 4px solid var(--sw-accent);
   color: var(--sw-header-text);
 }
 
 .site-navigation-inner {
-  width: min(100% - 2rem, 78rem);
-  margin: 0 auto;
-  min-height: 4.75rem;
+  width: 100%;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.25rem;
+  padding: 1rem 2rem;
 }
 
-.site-brand { color: var(--sw-header-text); font-size: 1.35rem; font-weight: 700; text-decoration: none; }
+.site-brand { color: var(--sw-header-text); font-size: 1.5rem; font-weight: 200; text-decoration: none; }
 .site-brand:hover { color: var(--sw-header-text); text-decoration: none; }
 .site-navigation-actions, .site-controls, .language-switch, .site-menu { display: flex; align-items: center; }
-.site-navigation-actions { gap: 1.25rem; }
+.site-navigation-actions { gap: 1.25rem; margin-left: auto; }
 .site-menu { gap: 1rem; list-style: none; margin: 0; padding: 0; }
-.site-menu a { color: var(--sw-header-text); font-size: .95rem; text-decoration: none; }
-.site-menu a:hover, .site-menu a[aria-current="page"] { color: var(--sw-accent); }
+.site-menu a { color: var(--sw-header-text); font-size: 1.125rem; font-weight: 400; text-decoration: none; }
+.site-menu a:hover, .site-menu a[aria-current="page"] { color: var(--sw-header-text); text-decoration: underline; }
 .site-controls { gap: .75rem; }
 .language-switch { gap: .15rem; font-size: .78rem; }
 .language-switch a, .language-switch span { color: var(--sw-header-text); padding: .28rem .42rem; border-radius: 3px; white-space: nowrap; }
@@ -103,16 +93,13 @@ body .bg-light-gray { background-color: var(--sw-bg); }
   cursor: pointer;
   position: relative;
 }
-.theme-toggle::after { content: ""; position: absolute; left: .2rem; width: 1.3rem; height: 1.3rem; border-radius: 50%; background: var(--sw-accent); transition: transform .2s ease; }
+.theme-toggle::after { content: ""; position: absolute; left: .2rem; width: 1.3rem; height: 1.3rem; border-radius: 50%; background: var(--sw-header-text); transition: transform .2s ease; }
 .theme-toggle[aria-pressed="true"]::after { transform: translateX(1.35rem); }
 .theme-toggle span { z-index: 1; font-size: .78rem; }
-.theme-toggle:focus-visible { outline: 3px solid var(--sw-accent); outline-offset: 3px; }
-
-footer.bg-near-black { background: var(--sw-header); }
-footer a { color: var(--sw-header-text); }
+.theme-toggle:focus-visible { outline: 3px solid var(--sw-header-text); outline-offset: 3px; }
 
 @media screen and (max-width: 70em) {
-  .site-navigation-inner { align-items: flex-start; flex-direction: column; padding: .8rem 0; }
+  .site-navigation-inner { align-items: flex-start; flex-direction: column; padding: .8rem 1.25rem; }
   .site-navigation-actions { width: 100%; justify-content: space-between; }
 }
 
