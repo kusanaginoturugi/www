@@ -101,31 +101,31 @@ timeZone = 'Asia/Tokyo'
     url = '/en/contact/'
     weight = 40
 
-  [languages.koshu]
-    locale = 'ja-JP-x-koshu'
-    label = '甲州弁'
+  [languages.kagoshima]
+    locale = 'ja-JP-x-kagoshima'
+    label = '鹿児島弁'
     weight = 3
-    [languages.koshu.params]
-      description = 'IT 開発受託・コンサルティングの SHOWWAY 公式サイトだよ。'
-    [[languages.koshu.menu.main]]
-    name = 'できること'
-    url = '/koshu/services/'
+    [languages.kagoshima.params]
+      description = 'IT開発受託と技術相談をしちょっSHOWWAYじゃっど。'
+    [[languages.kagoshima.menu.main]]
+    name = 'でくっこっ'
+    url = '/kagoshima/services/'
     weight = 10
-    [[languages.koshu.menu.main]]
-    name = '仕事の実績'
-    url = '/koshu/actual_list/'
+    [[languages.kagoshima.menu.main]]
+    name = '仕事ん実績'
+    url = '/kagoshima/actual_list/'
     weight = 15
-    [[languages.koshu.menu.main]]
-    name = '会社のこと'
-    url = '/koshu/about/'
+    [[languages.kagoshima.menu.main]]
+    name = '会社んこっ'
+    url = '/kagoshima/about/'
     weight = 20
-    [[languages.koshu.menu.main]]
+    [[languages.kagoshima.menu.main]]
     name = 'ブログ'
     url = '/posts/'
     weight = 30
-    [[languages.koshu.menu.main]]
-    name = '連絡する'
-    url = '/koshu/contact/'
+    [[languages.kagoshima.menu.main]]
+    name = '連絡すっ'
+    url = '/kagoshima/contact/'
     weight = 40
 
 [markup]

@@ -26,7 +26,7 @@ hugo --minify
 content/
   _index.md           トップ
   _index.en.md        英語トップ
-  _index.koshu.md     甲州弁トップ
+  _index.kagoshima.md 鹿児島弁トップ
   about/              会社情報
   services/           事業内容
   contact/            問い合わせ
@@ -41,7 +41,7 @@ hugo.toml             サイト設定
 
 - 日本語 (既定): `/`
 - English: `/en/`
-- 甲州弁: `/koshu/`
+- 鹿児島弁: `/kagoshima/`
 
 トップ、事業内容、実績、会社情報、お問い合わせは 3 言語で用意している。ヘッダーの切替で OS のライト/ダーク設定を初期値にし、手動で選んだ表示モードはブラウザに保存する。
 

@@ -1,6 +1,8 @@
 ---
 title: "Selected Work"
 description: "Examples of systems, infrastructure, and operational improvements"
+featured_image: '/images/actual-list-wisteria.png'
+cover_dimming_class: 'bg-black-20'
 ---
 
 ## Recent Projects

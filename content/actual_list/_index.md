@@ -2,6 +2,8 @@
 title: "実績リスト"
 date: 2011-02-17T14:05:07
 lastmod: 2025-06-09T20:05:14
+featured_image: '/images/actual-list-wisteria.png'
+cover_dimming_class: 'bg-black-20'
 ---
 
 ### 2025年

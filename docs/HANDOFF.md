@@ -11,5 +11,10 @@
 
 - 日本語: `/`
 - English: `/en/`
-- 甲州弁: `/koshu/`
-- 翻訳済みなのは固定ページのみ。ブログ本文は日本語のままなので、英語・甲州弁の記事を増やすときは同じ slug の `.en.md` / `.koshu.md` を `content/posts/` に置く。
+- 鹿児島弁: `/kagoshima/`
+- 翻訳済みなのは固定ページのみ。ブログ本文は日本語のままなので、英語・鹿児島弁の記事を増やすときは同じ slug の `.en.md` / `.kagoshima.md` を `content/posts/` に置く。
+
+## 実績リスト画像
+
+- `static/images/actual-list-wisteria.png` を日本語・英語・鹿児島弁の実績リストで共用している。
+- `cover_dimming_class: 'bg-black-20'` を指定して、画像内の暗め処理と重なっても見出しが読める濃さにしている。
