@@ -37,6 +37,11 @@ scripts/
 hugo.toml             サイト設定
 ```
 
+## 最近追加した記事
+
+- `content/posts/memos-mcp-with-codex.md`: セルフホスト Memos を Codex の MCP として使う手順
+- `content/posts/tailscale-authentik-small-team.md`: Tailscale と authentik のアクセス・認証の役割分担
+
 ## 表示言語とテーマ
 
 - 日本語 (既定): `/`

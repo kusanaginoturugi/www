@@ -1,12 +1,14 @@
 ---
-title: "Cloudflare を活用した小規模事業者向けサービスを開始します"
+title: "小規模事業者向けのクラウド・認証基盤構築を提供します"
 date: 2026-06-11T00:00:00+09:00
+slug: "cloudflare-を活用した小規模事業者向けサービスを開始します"
 draft: false
-description: "Cloudflare Tunnel、Cloudflare Access、Workers、D1 などを活用し、小規模事業者向けに安全な公開環境、軽量な業務アプリ、DNS・SSL 設定整理を提供します。"
+description: "Tailscale、authentik、Cloudflare Workers、D1 などを活用し、小規模事業者向けに安全な社内アクセス、認証基盤、軽量な業務アプリ、DNS・SSL 設定整理を提供します。"
+summary: "Tailscale と authentik による社内アクセス・認証基盤、Cloudflare Workers と D1 による小規模業務アプリ、DNS / SSL 設定整理を提供します。"
 tags:
   - Cloudflare
-  - Cloudflare Tunnel
-  - Cloudflare Access
+  - Tailscale
+  - authentik
   - Cloudflare Workers
   - D1
   - 業務システム
@@ -17,52 +19,55 @@ categories:
 
 Showway では、Cloudflare を活用した小規模事業者向けの構築サービスを提供しています。
 
-Cloudflare は、DNS、SSL、CDN、WAF、Zero Trust、サーバーレス実行環境などをまとめて扱えるサービスです。
-大規模サイト向けのサービスという印象もありますが、実際には小規模な会社や個人事業のシステムにも相性がよく、固定 IP や VPN、専用サーバを前提にしない構成を作りやすいのが特徴です。
+Cloudflare は、DNS、SSL、CDN、WAF、サーバーレス実行環境などをまとめて扱えるサービスです。
+Tailscale や authentik と組み合わせると、小規模な会社や個人事業でも、固定 IP やルーターのポート開放に頼らず、社内システムへのアクセスと認証を整理できます。
 
 Showway では、特に以下の 3 つの領域を中心に対応します。
 
-## 1. Cloudflare Tunnel / Access による社内システムの安全な公開
+## 1. Tailscale / authentik による社内アクセスと認証基盤の整備
 
-社内や自宅サーバで動いている Web アプリ、管理画面、SSH などを、Cloudflare Tunnel と Cloudflare Access を使って安全に外部から利用できるようにします。
+社内や自宅サーバで動いている Web アプリ、管理画面、SSH、開発環境などを、必要な人だけが安全に使えるように整えます。
 
-従来は、外部から社内システムにアクセスするために、以下のような準備が必要でした。
+Tailscale は端末とサーバを安全なネットワークとして接続する仕組みです。インターネットへ直接ポートを開けずに、登録した端末同士で SSH や管理画面へ接続できます。
+
+authentik は、自前で運用できる認証基盤です。既存の Web アプリの前段に置くことで、ログインをまとめたり、多要素認証を追加したりできます。
+
+従来は、外部から社内システムにアクセスするために、次のような準備が必要でした。
 
 - 固定 IP アドレス
 - ルーターのポート開放
-- VPN サーバの構築
+- VPN サーバやアカウント管理の構築
 - SSL 証明書の管理
 - ファイアウォール設定
 - ログイン制御
 
-Cloudflare Tunnel を使うと、サーバ側から Cloudflare に接続する形になるため、外部からサーバへ直接ポートを開ける必要がありません。
-さらに Cloudflare Access を組み合わせることで、Google アカウントや Microsoft アカウントなどによる認証を追加できます。
+Tailscale と authentik を組み合わせると、ネットワークに入れる端末と、アプリを使える利用者を分けて管理できます。既存の Rails、PHP、Redmine、管理画面などを大きく作り替えずに、アクセス経路と認証を後から整えられるのが利点です。
 
 ### 対応例
 
-- 社内 Redmine を外部から安全に利用したい
-- Rails / PHP / Classic ASP などの既存業務アプリを保護したい
-- 管理画面に認証を追加したい
-- SSH を VPN なしで安全に使いたい
-- 自宅サーバや小規模事務所のサーバを外部公開したい
-- WordPress の管理画面だけを制限したい
+- 社内 Redmine を外出先から安全に利用したい
+- Rails / PHP / Classic ASP などの既存業務アプリを認証で保護したい
+- 管理画面に多要素認証を追加したい
+- SSH を端末単位で安全に使いたい
+- 自宅サーバや小規模事務所のサーバを外部へ直接公開したくない
+- 利用者の追加・削除を一か所で管理したい
 
 ### 向いているケース
 
-- VPN の運用が面倒
-- 固定 IP がない
-- ルーターのポート開放を避けたい
+- VPN の運用やアカウント管理が属人化している
+- 固定 IP がない、またはポート開放を避けたい
 - 小規模な社内システムを外出先から使いたい
+- 退職者や外部協力者のアクセスを確実に止めたい
 - 専任の情シス担当者がいない
 - 既存サーバを大きく作り替えずに安全性を上げたい
 
 ### 提供内容
 
-- Cloudflare Tunnel の設計・構築
-- Cloudflare Access の認証設定
-- DNS 設定
-- 対象アプリケーションの公開設定
-- SSH アクセス設定
+- Tailscale のネットワーク設計・導入
+- authentik の認証・多要素認証設定
+- 既存アプリへの認証追加
+- DNS とリバースプロキシの設定
+- SSH アクセスの端末・利用者単位の整理
 - 簡易手順書の作成
 - 運用上の注意点整理
 
@@ -101,7 +106,6 @@ Cloudflare Workers を使う構成では、サーバ管理の手間を減らし�
 - Cloudflare D1
 - Hono
 - TypeScript
-- Cloudflare Access
 - Cloudflare R2
 - GitHub
 
@@ -178,8 +182,8 @@ Showway では、Cloudflare の設定を確認し、現在の運用に合わせ�
 | --- | ---: |
 | Cloudflare DNS / SSL 設定確認 | 20,000円〜 |
 | DNS / SSL / リダイレクト整理 | 30,000円〜 |
-| Cloudflare Tunnel + Access 設定 | 50,000円〜 |
-| 複数アプリ・複数サーバの Tunnel 設定 | 80,000円〜 |
+| Tailscale の導入・アクセス整理 | 50,000円〜 |
+| authentik を使った認証基盤・複数アプリ連携 | 80,000円〜 |
 | 小規模 Workers アプリ開発 | 100,000円〜 |
 | 認証・検索・CSV 入出力付き業務アプリ | 200,000円〜 |
 
@@ -212,8 +216,8 @@ Cloudflare を使った構成は、小さく始めやすいのが利点です。
 
 たとえば、最初は以下のような範囲から始められます。
 
-- 管理画面だけ Cloudflare Access で保護する
-- SSH だけ Tunnel 経由にする
+- 管理用端末だけ Tailscale へ参加させる
+- 管理画面だけ authentik で保護する
 - DNS と SSL 設定だけ整理する
 - 既存の Excel 業務を小さな Web アプリにする
 - 社内用の簡単な記録アプリを作る
@@ -222,10 +226,10 @@ Cloudflare を使った構成は、小さく始めやすいのが利点です。
 
 ## ご相談ください
 
-Cloudflare を使った社内システムの安全な公開、小規模業務アプリの開発、DNS / SSL 設定の整理などに対応しています。
+Tailscale / authentik を使った社内アクセス・認証の整理、小規模業務アプリの開発、Cloudflare を使った DNS / SSL 設定の整理などに対応しています。
 
 「今の構成で何ができるのか知りたい」
-「VPN をやめたい」
+「VPN やアカウント管理を整理したい」
 「小さな業務アプリを安く作りたい」
 「Cloudflare の設定が正しいか見てほしい」
 

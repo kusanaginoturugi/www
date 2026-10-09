@@ -18,3 +18,9 @@
 
 - `static/images/actual-list-wisteria.png` を日本語・英語・鹿児島弁の実績リストで共用している。
 - `cover_dimming_class: 'bg-black-20'` を指定して、画像内の暗め処理と重なっても見出しが読める濃さにしている。
+
+## サービスとブログ
+
+- `content/posts/cloudflare-small-business-services.md` は、Tailscale / authentik を含む社内アクセス・認証基盤のサービス記事。タイトルを変えても、旧 URL を維持するため slug を固定している。
+- `content/posts/memos-mcp-with-codex.md` はセルフホスト Memos の MCP 接続手順。実際のホスト名や PAT は載せない。
+- `content/posts/tailscale-authentik-small-team.md` は Tailscale と authentik の役割分担を説明する記事。実案件の構成を断定する表現は避けている。
