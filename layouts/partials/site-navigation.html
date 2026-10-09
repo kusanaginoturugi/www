@@ -1,8 +1,6 @@
 {{- $labels := dict "theme" "表示モードを切り替え" -}}
 {{- if eq .Site.Language.Lang "en" -}}
   {{- $labels = dict "theme" "Toggle colour mode" -}}
-{{- else if eq .Site.Language.Lang "kagoshima" -}}
-  {{- $labels = dict "theme" "明るさを切り替ゆっど" -}}
 {{- end -}}
 <nav class="site-navigation" aria-label="{{ if eq .Site.Language.Lang "en" }}Global navigation{{ else }}グローバルナビゲーション{{ end }}">
   <div class="site-navigation-inner">

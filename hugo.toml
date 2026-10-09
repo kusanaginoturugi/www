@@ -101,33 +101,6 @@ timeZone = 'Asia/Tokyo'
     url = '/en/contact/'
     weight = 40
 
-  [languages.kagoshima]
-    locale = 'ja-JP-x-kagoshima'
-    label = '鹿児島弁'
-    weight = 3
-    [languages.kagoshima.params]
-      description = 'IT開発受託と技術相談をしちょっSHOWWAYじゃっど。'
-    [[languages.kagoshima.menu.main]]
-    name = 'でくっこっ'
-    url = '/kagoshima/services/'
-    weight = 10
-    [[languages.kagoshima.menu.main]]
-    name = '仕事ん実績'
-    url = '/kagoshima/actual_list/'
-    weight = 15
-    [[languages.kagoshima.menu.main]]
-    name = '会社んこっ'
-    url = '/kagoshima/about/'
-    weight = 20
-    [[languages.kagoshima.menu.main]]
-    name = 'ブログ'
-    url = '/posts/'
-    weight = 30
-    [[languages.kagoshima.menu.main]]
-    name = '連絡すっ'
-    url = '/kagoshima/contact/'
-    weight = 40
-
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
