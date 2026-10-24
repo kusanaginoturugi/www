@@ -1,10 +1,3 @@
-<script>
-  (() => {
-    try {
-      const theme = localStorage.getItem("showway-theme");
-      if (theme === "light" || theme === "dark") {
-        document.documentElement.dataset.theme = theme;
-      }
-    } catch (_) {}
-  })();
-</script>
+{{/* 表示前にテーマを反映するため defer を付けない。CSP で inline script を禁止しているので外部ファイルにする */}}
+{{ $themeInit := resources.Get "js/theme-init.js" | minify | fingerprint }}
+<script src="{{ $themeInit.RelPermalink }}" integrity="{{ $themeInit.Data.Integrity }}" crossorigin="anonymous"></script>

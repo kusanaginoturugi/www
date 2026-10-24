@@ -1,0 +1,8 @@
+(() => {
+  try {
+    const theme = localStorage.getItem("showway-theme");
+    if (theme === "light" || theme === "dark") {
+      document.documentElement.dataset.theme = theme;
+    }
+  } catch (_) {}
+})();
