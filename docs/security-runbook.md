@@ -1,18 +1,18 @@
 # 脆弱性点検・対策の共通手順
 
-kusanaginoturugi の GitHub リポジトリ向けの共通手順。npm / Cloudflare Workers のプロジェクト ([npbinfo](https://github.com/kusanaginoturugi/npbinfo/blob/main/docs/security-maintenance-playbook.md)) と、Hugo + Cloudflare Pages の静的サイト ([www](https://github.com/kusanaginoturugi/www)) で行った作業をまとめたもの。repo の構成に当てはまる節だけ実施する。repo 側に既存の方針があればそちらを優先する。
+kusanaginoturugi の GitHub リポジトリ向けの共通手順。npm / Cloudflare Workers のプロジェクト ([npbinfo](https://github.com/kusanaginoturugi/npbinfo/blob/main/docs/security-maintenance-playbook.md)) 、Hugo + Cloudflare Pages の静的サイト ([www](https://github.com/kusanaginoturugi/www))、Rails アプリ ([liberation](https://github.com/kusanaginoturugi/liberation/blob/main/docs/security.md)) で行った作業をまとめたもの。repo の構成に当てはまる節だけ実施する。repo 側に既存の方針があればそちらを優先する。
 
-| 節 | npm / Workers | Hugo + Pages |
-|---|---|---|
-| 1. 現状確認 | ○ | ○ |
-| 2. npm 依存 | ○ | テーマ開発用の package.json だけなら不要 |
-| 3. Hugo 本体 | − | ○ |
-| 4. テーマ | − | ○ |
-| 5. コードの点検 | ○ | `scripts/` と JS |
-| 6. セキュリティヘッダー | Worker が HTML を返すなら | ○ |
-| 7. GitHub の設定 | ○ | ○ |
-| 8. 反映と確認 | ○ | ○ |
-| 9. 記録 | ○ | ○ |
+| 節 | npm / Workers | Hugo + Pages | Rails |
+|---|---|---|---|
+| 1. 現状確認 | ○ | ○ | ○ |
+| 2. 依存 | ○ | テーマ開発用の package.json だけなら不要 | Bundler |
+| 3. Hugo 本体 | − | ○ | − |
+| 4. テーマ | − | ○ | − |
+| 5. コードの点検 | ○ | `scripts/` と JS | ○ (Brakeman + 手で読む) |
+| 6. セキュリティヘッダー | Worker が HTML を返すなら | ○ | ○ (initializer) |
+| 7. GitHub の設定 | ○ | ○ | ○ |
+| 8. 反映と確認 | ○ | ○ | ○ |
+| 9. 記録 | ○ | ○ | ○ |
 
 ## 依頼文 (Claude / Codex に渡す)
 
@@ -52,7 +52,9 @@ curl -sS -H "Authorization: Bearer $T" \
 
 `wrangler` を実行すると `.wrangler/` ができるので `.gitignore` に入れる。
 
-## 2. npm 依存
+## 2. 依存
+
+### npm
 
 基準値を取る。
 
@@ -68,6 +70,24 @@ npm ls <指摘のpackage> --all      # 依存経路
 - 間接依存の `overrides` は、修正版と互換性を確認できた場合だけ追加する。外す条件を記録に書く。
 - Cloudflare Workers では、`devDependency` でも Worker に import されてバンドルされていることがある。import 経路を確認してから影響を判断する。
 - 残る指摘は、実際の利用経路と修正版の有無を記録する。
+
+### Bundler (Rails)
+
+mise で Ruby を入れている repo は、`mise trust` で設定を永続的に変えずに環境を作れる。
+
+```sh
+export MISE_TRUSTED_CONFIG_PATHS=$PWD; eval "$(mise env -s bash)"
+bundle install
+bin/brakeman --no-pager -q
+bin/bundler-audit check --update          # なければ gem install --user-install bundler-audit で一度だけ確認
+bundle outdated --only-explicit
+bin/rails test
+```
+
+- `bundler-audit` がなければ Rails 8.1 の生成物にそろえて追加する: Gemfile の `development, test` に `gem "bundler-audit", require: false`、`bin/bundler-audit` (`require_relative "../config/boot"` → `Bundler::Audit::CLI.start`、引数なしか `check` のとき `--config config/bundler-audit.yml` を足す)、`config/bundler-audit.yml` (`ignore:` の一覧)。`bundle binstubs` が作る `bin/bundle-audit` は不要。
+- 間接依存は `bundle update --conservative <gem>` で、他の gem を動かさずに上げる。`Gemfile.lock` の差分が対象 gem だけか確認する。
+- 本番サーバーのアーキテクチャ (例: Graviton なら aarch64) の platform が `Gemfile.lock` にあるか確認する。
+- `config/importmap.rb` がない repo では `bin/importmap audit` は失敗する。CI 側で存在を確認してから実行していればよい。
 
 ## 3. Hugo 本体
 
@@ -123,6 +143,12 @@ kill $(cat <scratch>/hugo.pid)     # pkill -f は自分のシェルにも一致�
 - 認証、リクエスト本文の上限、外部 URL とファイルパス、HTML 出力、シークレットの扱いを見る (公開 API がある場合)。
 - `scripts/` のシェル・Python: 外部から取った値をファイル名やパスに使っていないか。`''|.|..|*/*` を弾く。
 - Hugo の `markup.goldmark.renderer.unsafe = true` は、他人の書いた Markdown を載せないなら許容してよい。理由を記録する。
+- Rails:
+  - Brakeman の警告 0 件でも認可は読む。`before_action` の `require_admin!` などと、ログインなしで許可しているアクション (`allow_unauthenticated_access` など) を一覧にして、公開してよいものか確かめる。
+  - CSV 出力: 利用者が入力した文字列が `= + - @` タブ・CR で始まると表計算ソフトで数式になる。文字列の値だけ先頭に `'` を付ける。
+  - ログインなしで外部 API (PDF 生成など) を呼べるアクションは、Rails 8 の `rate_limit` で回数を絞る。Cloudflare の後ろでは `request.remote_ip` が Cloudflare の IP になり、利用者間で枠を共有しがちなので上限は余裕を持たせる。
+  - OIDC でメールアドレスから既存ユーザーに結び付ける処理は、そのユーザーが別の subject に結び付いていたら拒否する。
+  - トークンを `Bearer ${env.TOKEN}` と比べる Worker は、シークレット未設定だと `Bearer undefined` で通る。`!env.TOKEN` を先に弾く。
 - シークレット:
 
 ```sh
@@ -156,6 +182,43 @@ curl -s https://<本番>/contact/ | grep -oE '<script[^>]*>'                    
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
   Strict-Transport-Security: max-age=31536000
 ```
+
+### Rails
+
+`config/initializers/content_security_policy.rb` で CSP を出す。先に inline の script とイベントハンドラーを棚卸しする。ハンドラーは HTML 属性 (`onclick=`) だけでなく、ヘルパーのオプション (`onchange: "..."`) にもある。
+
+```sh
+grep -rn '<script' app/views                                   # nonce を付ける対象
+grep -rnP "(?<![\w-])on[a-z]+(:\s*[\"']|=[\"'])" app/views app/helpers   # inline ハンドラー (ヘルパーのオプションも拾う)
+grep -rn 'style=' app/views | wc -l                            # 1 件でもあれば style-src に 'unsafe-inline'
+```
+
+```ruby
+Rails.application.configure do
+  config.content_security_policy do |policy|
+    policy.default_src     :self
+    policy.script_src      :self
+    policy.style_src       :self, :unsafe_inline
+    policy.img_src         :self, :data
+    policy.font_src        :self, :data
+    policy.connect_src     :self
+    policy.object_src      :none
+    policy.base_uri        :self
+    policy.form_action     :self
+    policy.frame_ancestors :none
+  end
+  config.content_security_policy_nonce_generator = ->(_request) { SecureRandom.base64(16) }
+  config.content_security_policy_nonce_directives = %w[script-src]
+end
+```
+
+- inline script は `<script nonce="<%= content_security_policy_nonce %>">` にする。nonce の生成に、雛形のコメントにある `request.session.id` は使わない (未ログインでは空になる)。
+- nonce を `style-src` に付けると `'unsafe-inline'` が無視され、`style=` 属性が全部効かなくなる。`script-src` だけにする。
+- inline ハンドラーは data 属性 (`data: { auto_submit: true }` など) にして、レイアウトの script で `document.addEventListener("change", ...)` のように委譲して処理する。
+- `Permissions-Policy` は `config.action_dispatch.default_headers["Permissions-Policy"] = "camera=(), ..."` で付ける。Rails の `config.permissions_policy` は旧 `Feature-Policy` ヘッダーを出す。
+- HSTS は `config.force_ssl` の既定値 (`max-age=63072000; includeSubDomains`) がすでに出ていることが多い。一度配信したものは外しても効果がないので、そのままにする。
+- OIDC のログインが `link_to` → 302 なら `form-action 'self'` のままでよい。フォーム送信の後に外部へリダイレクトする場合は、その host を `form-action` に足す。
+- テストを足す: CSP ヘッダーとレイアウトの nonce が一致すること (integration)、ビューに inline ハンドラーがないこと (`app/views/**/*.erb` を正規表現で検索)、script が実際に動くこと (system test で `data-*` の変化やセレクトの自動送信を確かめる)。system test は、nonce やハンドラーを戻すと失敗することも一度確かめる。
 
 ## 7. GitHub の設定
 
@@ -356,6 +419,17 @@ jobs:
           fail-on-severity: high
 ```
 
+### Rails の CI
+
+Rails の生成する `ci.yml` (scan_ruby / scan_js / lint / test) を残し、次を変える。
+
+- `permissions: contents: read` を最上位に置き、checkout に `persist-credentials: false`。`actions/checkout`、`ruby/setup-ruby`、`actions/upload-artifact`、`tailscale/github-action` などを SHA で固定する。
+- scan_ruby に `bin/bundler-audit check --update` を足す。
+- `schedule` (週次) を足す。deploy ジョブがある場合は、その `if:` が `push` / `workflow_dispatch` だけで、schedule 実行でデプロイしないことを確かめる。
+- deploy のシークレットはジョブの `env` ではなく、使うステップの `env` に置く。
+- CodeQL の `language` は `[actions, ruby, javascript-typescript]` (Worker やビュー外の JS があれば)。Dependency Review は `Gemfile.lock` も見る。
+- Dependabot の `bundler` / `github-actions` がすでにあれば、間隔などの既存設定は変えない。
+
 private repo では、CodeQL と Dependency Review に GitHub Advanced Security が必要なことがある。利用条件を確認する。
 
 ### 脆弱性アラート
@@ -391,6 +465,15 @@ gh api 'repos/OWNER/REPO/code-scanning/alerts?state=open' --jq length
 ```
 
 - Worker をデプロイした場合は、公開 API の build 情報などで反映を確認する。
+- Rails: ローカルで `bin/rails test test:system` を通す。Chrome がなく Chromium がある環境では `SE_CHROME_PATH=/usr/bin/chromium SE_CHROMEDRIVER=/usr/bin/chromedriver` を付ける。デプロイ後は公開ページを headless Chromium で開き、CSP 違反がコンソールに出ないことを確かめる。ログインが必要なページは目視確認を依頼する。
+
+```sh
+for p in / /login; do
+  chromium --headless=new --disable-gpu --enable-logging=stderr --v=0 --virtual-time-budget=3000 \
+    --dump-dom https://<本番>$p 2><scratch>/err.log | grep -oE '<html[^>]*>'      # script が付ける属性で実行を確認
+  grep -ciE 'Content Security Policy|Refused' <scratch>/err.log                     # 0 であること
+done
+```
 - Pages は `/foo.html` を `/foo` に 308 リダイレクトする。本番の記事ページは `curl -L` で取る。
 - CodeQL の初回完了前は、code-scanning API が 404 (`no analysis found`) を返す。
 
@@ -415,3 +498,10 @@ repo の作業履歴 (`docs/WORKLOG.md` など) に書く。
 | `gh run list` が空 | push 直後はまだ登録されていない | 20 秒ほど待ってから取る |
 | CF の環境変数を変えたのに古い Hugo のまま | 環境変数の変更では再ビルドされない | 変更後に push する |
 | Dependabot の submodule 更新が使えない | ブランチ HEAD を追い、リリースタグを見ない | `gitsubmodule` を入れず、CI の warning で気づく |
+| Rails に CSP を入れたら本番でセレクトの自動送信やリンクが動かなくなった | `onchange: "this.form.requestSubmit()"` のようなヘルパーのオプションを、`<script>` と `on*=` の検索で見落とした | 6 節の正規表現で検索し、data 属性 + 委譲リスナーにする。ビューを検索するテストを足す |
+| `config.permissions_policy` を設定したのに `Permissions-Policy` が出ない | Rails の DSL は旧 `Feature-Policy` ヘッダーを出す | `default_headers` で直接付ける |
+| CSP を入れたら `style=` 属性が全部効かない | `style-src` に nonce を付けると `'unsafe-inline'` が無視される | nonce は `script-src` だけにする |
+| system test が修正前のビューでも通る | 新しく作ったデータが既定で選ばれ、送信されなくても表示が一致した | 既定でない方を選ぶ。修正を戻すと失敗することを一度確かめる |
+| CodeQL がテストの `/<script>/` を `rb/bad-tag-filter` で指摘 | 大文字の `<SCRIPT>` に一致しない正規表現をタグ検出とみなす | 正規表現をやめて `assert_not_includes body, "<script>"` |
+| `bin/brakeman` などが mise のエラーで動かない | `.mise.toml` を trust していない | `MISE_TRUSTED_CONFIG_PATHS=$PWD` を付けて `eval "$(mise env -s bash)"` |
+| `wrangler secret list` が認証エラー | Worker が別の Cloudflare アカウント (`account_id`) にある | そのアカウントでデプロイを依頼する。トークン未設定かは `Bearer undefined` で叩いて 401 を確認する |
