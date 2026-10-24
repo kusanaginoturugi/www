@@ -1,6 +1,6 @@
 # 脆弱性点検手順 (Hugo + Cloudflare Pages)
 
-[npbinfo の手順](https://github.com/kusanaginoturugi/npbinfo/blob/main/docs/security-maintenance-playbook.md) を、npm 依存のない Hugo 静的サイト向けに置き換えたもの。
+[npbinfo の手順](https://github.com/kusanaginoturugi/npbinfo/blob/main/docs/security-maintenance-playbook.md) を、npm 依存のない Hugo 静的サイト向けに置き換えたもの。他の Hugo サイトに使える共通手順は [hugo-pages-security-runbook.md](hugo-pages-security-runbook.md)。
 
 ## 構成と攻撃面
 
