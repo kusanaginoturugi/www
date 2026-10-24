@@ -7,7 +7,7 @@
 - 公開物は Hugo が出力する静的ファイルだけ。サーバー側の API、フォーム、認証、シークレットはない。
 - ビルドは Cloudflare Pages の Git 連携 (プロジェクト `www`)。Hugo のバージョンは Pages の環境変数 `HUGO_VERSION` で決まる。
 - 依存は Hugo 本体、テーマ `themes/ananke` (git submodule)、GitHub Actions の3つ。npm の lockfile はない (テーマ内の `package.json` はテーマ開発用で、このサイトのビルドでは使わない)。
-- ブラウザ側の JS は `assets/js/theme-init.js`、`assets/js/theme-toggle.js`、`assets/js/code-copy.js` (テーマのコピーボタン処理を外部ファイル化したもの) だけ。どちらも fingerprint + SRI 付きで配信する。
+- ブラウザ側の JS は `assets/js/theme-init.js`、`assets/js/theme-toggle.js`、`assets/js/code-copy.js` (テーマのコピーボタン処理を外部ファイル化したもの) だけ。いずれも fingerprint + SRI 付きで配信する。
 
 ## 定期点検
 
