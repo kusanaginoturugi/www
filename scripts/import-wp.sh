@@ -41,6 +41,10 @@ echo "[3/3] $count 件を変換"
 i=0
 while [ "$i" -lt "$count" ]; do
   slug=$(jq -r ".[$i].slug" "$posts")
+  # slug はファイル名に使うため、パス区切りや . / .. を含むものは取り込まない
+  case "$slug" in
+    ''|.|..|*/*) echo "  ! 不正な slug を無視: ${slug}" >&2; i=$((i + 1)); continue ;;
+  esac
   title=$(jq -r ".[$i].title.rendered" "$posts")
   date=$(jq -r ".[$i].date" "$posts")
   html=$(jq -r ".[$i].content.rendered" "$posts")

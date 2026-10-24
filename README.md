@@ -49,6 +49,7 @@ hugo.toml             サイト設定
 トップ、事業内容、実績、会社情報、お問い合わせは日本語と英語で用意している。ヘッダーの切替で OS のライト/ダーク設定を初期値にし、手動で選んだ表示モードはブラウザに保存する。
 
 実装の経緯と保守時の注意点は `docs/PLAN.md`、`docs/WORKLOG.md`、`docs/HANDOFF.md` を参照。
+脆弱性点検とセキュリティヘッダーは `docs/security-maintenance-playbook.md` を参照。
 
 ## URL 構造
 
@@ -69,7 +70,7 @@ GitHub の `main` ブランチに push されたら、Cloudflare Pages が自動
    - Build output directory: `public`
    - Root directory: `/` (空欄)
 5. **Environment variables** に追加:
-   - `HUGO_VERSION` = `0.162.0`
+   - `HUGO_VERSION` = `0.168.0` (`.github/workflows/ci.yml` と揃える)
 6. **Save and Deploy**
 
 ### カスタムドメイン

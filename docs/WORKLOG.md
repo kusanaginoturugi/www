@@ -21,3 +21,15 @@
 ## 2026-10-09: 鹿児島弁版の整理
 
 - 鹿児島弁版は言語切替と公開構成から外し、ブログ記事として実装事例を残した。
+
+## 2026-10-24: セキュリティ点検
+
+- 点検対象: Hugo 本体、テーマ (submodule)、ブラウザ側 JS、公開ヘッダー、`scripts/`、リポジトリ内のシークレット。npm の依存はない。
+- Hugo: Cloudflare Pages の `HUGO_VERSION` が 0.162.0 のままで、0.166.0〜0.168.0 で修正された medium の advisory が 10 件あった (TOC 見出しや lineAnchors の stored XSS、テーマ経由のファイル読み取りなど)。記事は自作でテーマもタグ固定のため悪用の余地は小さいが、Pages の production/preview と CI を 0.168.0 にそろえた。
+- テーマ: Ananke v2.17.0 → 最新 v2.19.1 は、このサイトで上書きしている `head-additions` / `site-scripts` / `list` / `summary` 自体が変わるため今回は見送った。セキュリティ修正は含まれていない。未対応事項として残す。
+- ヘッダー: 本番は `nosniff` と `Referrer-Policy` だけだった。`static/_headers` で CSP (`script-src 'self'`)、`X-Frame-Options: DENY`、`Permissions-Policy`、HSTS (サブドメインなし) を追加した。
+- CSP に合わせて、`head-additions.html` の inline script を `assets/js/theme-init.js` (defer なし、SRI 付き) に移した。
+- `scripts/import-wp.sh`: WP API の slug をそのままファイル名にしていたため、`/` や `..` を含む slug を無視するようにした。旧 WP の API はすでに 404。
+- シークレット: `git grep` でトークンや秘密鍵の形式は見つからなかった。Secret scanning と push protection はすでに有効だった。
+- GitHub: Dependabot (github-actions 週次)、CI (Hugo ビルド、inline script 検出、Hugo/テーマの新版 warning、週次)、CodeQL (actions / javascript-typescript / python)、Dependency Review を追加した。Dependabot 脆弱性アラートを有効にした。main の保護設定と Dependabot security updates は変更していない。
+- 検証: ローカルの Hugo 0.168.0 で `hugo --minify` が成功し、出力に inline script がないことを確認した。
