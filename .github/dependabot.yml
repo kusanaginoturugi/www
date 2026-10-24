@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      timezone: Asia/Tokyo
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+# themes/ananke (git submodule) は Dependabot だと main の HEAD を追うため対象外。
+# リリースタグでの更新手順は docs/security-maintenance-playbook.md を参照。

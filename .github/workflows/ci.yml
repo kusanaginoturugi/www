@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  # Cloudflare Pages の環境変数 HUGO_VERSION と揃える
+  HUGO_VERSION: 0.168.0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          submodules: true
+          persist-credentials: false
+
+      - name: Install Hugo
+        run: |
+          curl -fsSL -o hugo.deb "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb"
+          sudo dpkg -i hugo.deb
+          hugo version
+
+      - name: Build
+        run: hugo --minify
+
+      - name: Check security headers file
+        run: grep -q "Content-Security-Policy" public/_headers
+
+      - name: Check inline scripts
+        # CSP の script-src 'self' を壊す inline script がないか確認する
+        run: |
+          if grep -rlE '<script>|<script [^>]*>[^<]' public --include='*.html'; then
+            echo "::error::inline script が出力されています"
+            exit 1
+          fi
+
+      - name: Check Hugo and theme releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          latest_hugo=$(gh release view -R gohugoio/hugo --json tagName --jq .tagName)
+          if [ "v${HUGO_VERSION}" != "$latest_hugo" ]; then
+            echo "::warning::Hugo ${latest_hugo} が出ています (固定版 v${HUGO_VERSION})"
+          fi
+          current_theme=$(git -C themes/ananke describe --tags --always)
+          latest_theme=$(gh release view -R theNewDynamic/gohugo-theme-ananke --json tagName --jq .tagName)
+          if [ "$current_theme" != "$latest_theme" ]; then
+            echo "::warning::Ananke ${latest_theme} が出ています (現在 ${current_theme})"
+          fi
