@@ -53,8 +53,10 @@ jobs:
           if [ "v${HUGO_VERSION}" != "$latest_hugo" ]; then
             echo "::warning::Hugo ${latest_hugo} が出ています (固定版 v${HUGO_VERSION})"
           fi
-          current_theme=$(git -C themes/ananke describe --tags --always)
+          # submodule は shallow checkout でタグがないため commit SHA で比べる
+          current_theme=$(git -C themes/ananke rev-parse HEAD)
           latest_theme=$(gh release view -R theNewDynamic/gohugo-theme-ananke --json tagName --jq .tagName)
-          if [ "$current_theme" != "$latest_theme" ]; then
+          latest_theme_sha=$(gh api "repos/theNewDynamic/gohugo-theme-ananke/commits/${latest_theme}" --jq .sha)
+          if [ "$current_theme" != "$latest_theme_sha" ]; then
             echo "::warning::Ananke ${latest_theme} が出ています (現在 ${current_theme})"
           fi

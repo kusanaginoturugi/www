@@ -10,3 +10,4 @@ resources/
 
 # Local-only
 .claude/
+.wrangler/
