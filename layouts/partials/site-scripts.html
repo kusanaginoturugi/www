@@ -1,2 +1,7 @@
 {{ $theme := resources.Get "js/theme-toggle.js" | minify | fingerprint }}
 <script defer src="{{ $theme.RelPermalink }}" integrity="{{ $theme.Data.Integrity }}" crossorigin="anonymous"></script>
+{{/* テーマの site-scripts.html にある inline のコピーボタン処理を、CSP に合わせて外部ファイルにしたもの */}}
+{{- if ne false site.Params.ananke.copy_code -}}
+{{ $codeCopy := resources.Get "js/code-copy.js" | minify | fingerprint }}
+<script defer src="{{ $codeCopy.RelPermalink }}" integrity="{{ $codeCopy.Data.Integrity }}" crossorigin="anonymous"></script>
+{{- end -}}

@@ -7,7 +7,7 @@
 - 公開物は Hugo が出力する静的ファイルだけ。サーバー側の API、フォーム、認証、シークレットはない。
 - ビルドは Cloudflare Pages の Git 連携 (プロジェクト `www`)。Hugo のバージョンは Pages の環境変数 `HUGO_VERSION` で決まる。
 - 依存は Hugo 本体、テーマ `themes/ananke` (git submodule)、GitHub Actions の3つ。npm の lockfile はない (テーマ内の `package.json` はテーマ開発用で、このサイトのビルドでは使わない)。
-- ブラウザ側の JS は `assets/js/theme-init.js` と `assets/js/theme-toggle.js` だけ。どちらも fingerprint + SRI 付きで配信する。
+- ブラウザ側の JS は `assets/js/theme-init.js`、`assets/js/theme-toggle.js`、`assets/js/code-copy.js` (テーマのコピーボタン処理を外部ファイル化したもの) だけ。どちらも fingerprint + SRI 付きで配信する。
 
 ## 定期点検
 
@@ -16,7 +16,7 @@
    - Cloudflare Pages の `HUGO_VERSION` (production と preview の両方)
    - `.github/workflows/ci.yml` の `HUGO_VERSION`
    - `README.md` の初回セットアップ手順
-3. テーマ: `gh release view -R theNewDynamic/gohugo-theme-ananke` と `git -C themes/ananke describe --tags` を比べる。Dependabot は submodule のブランチ HEAD を追うため使っていない。更新するときは、上書きしている `layouts/partials/`、`layouts/list.html`、`layouts/summary.html` がテーマ側で変わっていないか `git -C themes/ananke diff <旧tag> <新tag> -- layouts/` で確認し、更新前後の `public/` を `diff -r` で比べる。
+3. テーマ: `gh release view -R theNewDynamic/gohugo-theme-ananke` と `git -C themes/ananke describe --tags` を比べる。Dependabot は submodule のブランチ HEAD を追うため使っていない。更新するときは、上書きしている `layouts/partials/`、`layouts/list.html`、`layouts/summary.html` がテーマ側で変わっていないか `git -C themes/ananke diff <旧tag> <新tag> -- layouts/` で確認し、更新前後の `public/` を `diff -r` で比べる。テーマの `_partials/site-scripts.html` が変わったら、`assets/js/code-copy.js` にも反映する。
 4. GitHub Actions は Dependabot が週次で PR を出す。Actions は commit SHA で固定する。
 5. CI の週次実行で、Hugo とテーマに新しいリリースがあれば warning が出る。
 6. GitHub の Security タブで Dependabot alerts、Code scanning (CodeQL: actions / javascript-typescript / python)、Secret scanning を確認する。
